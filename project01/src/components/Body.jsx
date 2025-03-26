@@ -1,11 +1,13 @@
 import RestaurantCard from "./RestaurantCard";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = () => {
   //local state variable - super powerful variable
   const [listOfRestaurants, setListOfRestaurant] = useState([]);
-  const [filteredRestaurant, setRilteredRestaurant] = useState([]); 
+  const [filteredRestaurant, setRilteredRestaurant] = useState([]);
 
   const [searchText, setSearhText] = useState("");
 
@@ -42,6 +44,13 @@ const Body = () => {
     setListOfRestaurant(filteredRestaurant);
   }
 
+  const onlineStatus = useOnlineStatus();
+
+  if (onlineStatus === false)
+    return (
+      <h1>Looks like you are offline! please check your internet connection</h1>
+    );
+
   return listOfRestaurants.length === 0 ? (
     <Shimmer />
   ) : (
@@ -72,10 +81,17 @@ const Body = () => {
       </div>
       <div className="res-container">
         {listOfRestaurants.map((restaurant) => (
-          <RestaurantCard
-            key={restaurant.data ? restaurant.data.id : restaurant.info.id}
-            resData={restaurant}
-          />
+          // to={"/restaurants" + restaurant.data.id}
+          <Link
+            to={
+              "/restaurants/" + (restaurant?.info?.id || restaurant?.data?.id)
+            }
+          >
+            <RestaurantCard
+              key={restaurant.data ? restaurant.data.id : restaurant.info.id}
+              resData={restaurant}
+            />
+          </Link>
         ))}
       </div>
     </div>

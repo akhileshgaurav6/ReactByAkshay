@@ -12,7 +12,11 @@ const RestaurantMenu = () => {
   const { resId } = useParams();
   // console.log(resId);
 
+  const dummy = "Dummy Data"
+
   const resInfo = useRestaurantMenu(resId);
+
+  const [showIndex, setShowIndex] = useState(0);
 
   // useEffect(() => {
   //   fetchMenu();
@@ -55,10 +59,14 @@ const RestaurantMenu = () => {
       </p>
 
       {/* categories Accoridian */}
-      {categories.map((category) => (
+      {categories.map((category, index) => (
+        // controlled components
         <RestaurantCategory
           key={category?.card?.card.title}
           data={category?.card?.card}
+          showItems={index === showIndex ? true : false}
+          setShowIndex={() => setShowIndex(index)}
+          dummy={dummy}
         />
       ))}
 

@@ -12,7 +12,7 @@ class UserClass extends React.Component {
                 // avatar_url: 'https/dummy.com',
             },
         };
-        console.log(this.props.name + "Child Constructor");
+        // console.log(this.props.name + "Child Constructor");
         
 
         // console.log(props);
@@ -36,12 +36,12 @@ class UserClass extends React.Component {
     }
 
     componentDidUpdate(){
-        console.log("Component Did Update");
+        // console.log("Component Did Update");
         
     }
 
     componentWillUnmount () {
-        console.log("Component Will Unmount");
+        // console.log("Component Will Unmount");
         
     }
 

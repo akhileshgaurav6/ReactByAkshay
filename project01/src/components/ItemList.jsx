@@ -1,7 +1,9 @@
 import React from "react";
 import { CDN_URL } from "../utils/Constants";
 
-const ItemList = ({ items }) => {
+const ItemList = ({ items, dummy }) => {
+  console.log(dummy);
+  
   console.log(items);
 
   return (
